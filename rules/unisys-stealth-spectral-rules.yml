@@ -1,0 +1,278 @@
+rules:
+
+  # ─── INFO / METADATA ───────────────────────────────────────────────────────
+
+  info-title-required:
+    message: API info title is required
+    severity: error
+    given: $.info
+    then:
+      field: title
+      function: truthy
+
+  info-title-contains-unisys:
+    message: API title should reference Unisys
+    severity: warn
+    given: $.info.title
+    then:
+      function: pattern
+      functionOptions:
+        match: "(?i)unisys"
+
+  info-description-required:
+    message: API info description is required
+    severity: warn
+    given: $.info
+    then:
+      field: description
+      function: truthy
+
+  info-version-required:
+    message: API info version is required
+    severity: error
+    given: $.info
+    then:
+      field: version
+      function: truthy
+
+  # ─── OPENAPI VERSION ────────────────────────────────────────────────────────
+
+  openapi-version-3:
+    message: OpenAPI version must be 3.x
+    severity: error
+    given: $
+    then:
+      field: openapi
+      function: pattern
+      functionOptions:
+        match: "^3\\."
+
+  # ─── SERVERS ────────────────────────────────────────────────────────────────
+
+  servers-defined:
+    message: At least one server must be defined
+    severity: error
+    given: $
+    then:
+      field: servers
+      function: truthy
+
+  servers-https-only:
+    message: Server URLs must use HTTPS
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+
+  # ─── PATHS — NAMING CONVENTIONS ─────────────────────────────────────────────
+
+  paths-no-trailing-slash:
+    message: Paths must not end with a trailing slash
+    severity: warn
+    given: $.paths[*]~
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "/$"
+
+  stealth-paths-use-api-prefix:
+    message: Unisys Stealth EcoAPI paths should begin with /api/
+    severity: info
+    given: $.paths[*]~
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/api/"
+
+  # ─── OPERATIONS ─────────────────────────────────────────────────────────────
+
+  operation-id-required:
+    message: Every operation must have an operationId
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete,head,options]
+    then:
+      field: operationId
+      function: truthy
+
+  operation-id-camel-case:
+    message: operationId should use camelCase (Unisys convention)
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete,head,options].operationId
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]+$"
+
+  operation-summary-required:
+    message: Every operation must have a summary
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete,head,options]
+    then:
+      field: summary
+      function: truthy
+
+  operation-summary-title-case:
+    message: Operation summaries should start with an uppercase letter
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete,head,options].summary
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z]"
+
+  operation-description-required:
+    message: Every operation should have a description
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete,head,options]
+    then:
+      field: description
+      function: truthy
+
+  operation-tags-required:
+    message: Every operation should have at least one tag
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete,head,options]
+    then:
+      field: tags
+      function: truthy
+
+  # ─── PARAMETERS ─────────────────────────────────────────────────────────────
+
+  parameter-description-required:
+    message: All parameters should have descriptions
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].parameters[*]
+    then:
+      field: description
+      function: truthy
+
+  parameter-schema-required:
+    message: All parameters must have a schema
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete].parameters[*]
+    then:
+      field: schema
+      function: truthy
+
+  # ─── REQUEST BODIES ──────────────────────────────────────────────────────────
+
+  request-body-description:
+    message: Request bodies should have a description
+    severity: warn
+    given: $.paths[*][post,put,patch].requestBody
+    then:
+      field: description
+      function: truthy
+
+  # ─── RESPONSES ───────────────────────────────────────────────────────────────
+
+  response-success-defined:
+    message: Every operation must define at least one 2xx success response
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: responses
+      function: truthy
+
+  response-description-required:
+    message: All responses must have a description
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete].responses[*]
+    then:
+      field: description
+      function: truthy
+
+  response-401-unauthorized:
+    message: Protected operations should define 401 Unauthorized response
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: responses.401
+      function: truthy
+
+  response-400-bad-request:
+    message: Write operations should define 400 Bad Request response
+    severity: info
+    given: $.paths[*][post,put,patch]
+    then:
+      field: responses.400
+      function: truthy
+
+  # ─── SECURITY ────────────────────────────────────────────────────────────────
+
+  security-schemes-defined:
+    message: Security schemes must be defined
+    severity: error
+    given: $.components
+    then:
+      field: securitySchemes
+      function: truthy
+
+  security-basic-auth:
+    message: Unisys Stealth EcoAPI uses HTTP Basic Authentication
+    severity: warn
+    given: $.components.securitySchemes[*]
+    then:
+      field: type
+      function: enumeration
+      functionOptions:
+        values:
+          - http
+
+  # ─── HTTP METHOD CONVENTIONS ─────────────────────────────────────────────────
+
+  get-no-request-body:
+    message: GET operations must not have a request body
+    severity: error
+    given: $.paths[*].get
+    then:
+      field: requestBody
+      function: falsy
+
+  isolation-uses-post:
+    message: >-
+      Isolation and un-isolation operations should use POST method
+    severity: info
+    given: $.paths[?(@property =~ /isolate|unisolate/)][*]
+    then:
+      function: truthy
+
+  # ─── SCHEMAS — PROPERTY NAMING ───────────────────────────────────────────────
+
+  schema-property-camel-case:
+    message: Schema properties should use camelCase (Unisys convention)
+    severity: warn
+    given: $.components.schemas[*].properties[*]~
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  schema-description-required:
+    message: Top-level component schemas should have descriptions
+    severity: warn
+    given: $.components.schemas[*]
+    then:
+      field: description
+      function: truthy
+
+  # ─── GENERAL QUALITY ─────────────────────────────────────────────────────────
+
+  no-empty-descriptions:
+    message: Descriptions must not be empty strings
+    severity: warn
+    given: $..description
+    then:
+      function: pattern
+      functionOptions:
+        match: ".+"
+
+  components-schemas-defined:
+    message: Components schemas section should be defined
+    severity: error
+    given: $.components
+    then:
+      field: schemas
+      function: truthy

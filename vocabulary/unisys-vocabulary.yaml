@@ -1,0 +1,115 @@
+name: Unisys Stealth EcoAPI Vocabulary
+description: >-
+  Operational and capability vocabulary for Unisys Stealth EcoAPI, covering
+  zero trust network segmentation, endpoint isolation, user isolation, and
+  role management for security operations.
+
+operational:
+  resources:
+    - name: StealthRole
+      description: A Stealth network role defining segmentation and isolation policy
+      paths:
+        - /api/roles
+      operations:
+        - getStealthRoles
+    - name: EndpointIsolation
+      description: Endpoint isolation state management in the Stealth network
+      paths:
+        - /api/endpoint/isolate
+        - /api/endpoint/unisolate
+      operations:
+        - isolateEndpoint
+        - unisolateEndpoint
+    - name: UserIsolation
+      description: User isolation state management in the Stealth network
+      paths:
+        - /api/user/isolate
+        - /api/user/unisolate
+      operations:
+        - isolateUser
+        - unisolateUser
+    - name: CombinedIsolation
+      description: Combined endpoint and user isolation in a single operation
+      paths:
+        - /api/isolate
+        - /api/unisolate
+      operations:
+        - isolateMachineAndUser
+        - unisolateMachineAndUser
+
+  actions:
+    - name: Get
+      description: Retrieve role configurations from the Stealth server
+      operations:
+        - getStealthRoles
+    - name: Isolate
+      description: Place an endpoint or user under isolation in the Stealth network
+      operations:
+        - isolateEndpoint
+        - isolateUser
+        - isolateMachineAndUser
+    - name: Unisolate
+      description: Remove isolation from an endpoint or user in the Stealth network
+      operations:
+        - unisolateEndpoint
+        - unisolateUser
+        - unisolateMachineAndUser
+
+capability:
+  tools:
+    - name: get-stealth-roles
+      description: Retrieve Stealth network role configurations for use in isolation requests
+      capability: zero-trust-security
+    - name: isolate-endpoint
+      description: Isolate a compromised or suspected endpoint from the Stealth zero trust network
+      capability: zero-trust-security
+    - name: unisolate-endpoint
+      description: Restore a previously isolated endpoint to normal Stealth network access
+      capability: zero-trust-security
+    - name: isolate-user
+      description: Isolate a compromised or suspected user from the Stealth zero trust network
+      capability: zero-trust-security
+    - name: unisolate-user
+      description: Restore a previously isolated user to normal Stealth network access
+      capability: zero-trust-security
+    - name: isolate-machine-and-user
+      description: Simultaneously isolate both an endpoint and user in response to a security incident
+      capability: zero-trust-security
+    - name: unisolate-machine-and-user
+      description: Simultaneously restore both an endpoint and user to normal Stealth network access
+      capability: zero-trust-security
+
+  workflows:
+    - name: Zero Trust Security Operations
+      description: End-to-end security incident response using Stealth dynamic isolation — from detecting threats to containing and restoring endpoints and users
+      capability: zero-trust-security
+      steps:
+        - Retrieve available Stealth isolation roles
+        - Identify compromised endpoint or user from security alert
+        - Isolate endpoint and/or user using appropriate isolation role
+        - Investigate the incident while target remains isolated
+        - Un-isolate endpoint and/or user when incident is resolved
+
+  personas:
+    - name: Security Operations Analyst
+      description: Responds to security incidents by isolating compromised endpoints and users in real time
+      tools:
+        - get-stealth-roles
+        - isolate-endpoint
+        - unisolate-endpoint
+        - isolate-user
+        - unisolate-user
+    - name: Incident Responder
+      description: Performs coordinated containment of security incidents requiring simultaneous isolation
+      tools:
+        - isolate-machine-and-user
+        - unisolate-machine-and-user
+        - get-stealth-roles
+    - name: SOAR Platform
+      description: Automated security orchestration platform triggering Stealth isolation in response to SIEM alerts
+      tools:
+        - get-stealth-roles
+        - isolate-machine-and-user
+        - unisolate-machine-and-user
+        - isolate-endpoint
+        - isolate-user

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-stealth-role-schema.json",
+  "title": "StealthRole",
+  "description": "A Unisys Stealth network role defining segmentation and isolation policy",
+  "type": "object",
+  "properties": {
+    "roleId": {
+      "type": "string",
+      "description": "Unique identifier for the Stealth role"
+    },
+    "roleName": {
+      "type": "string",
+      "description": "Human-readable name of the Stealth role"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the role's purpose and scope"
+    },
+    "type": {
+      "type": "string",
+      "description": "Role type classification",
+      "enum": ["ISOLATION", "STANDARD", "ADMIN"]
+    }
+  }
+}

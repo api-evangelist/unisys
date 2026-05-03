@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-action-response-schema.json",
+  "title": "ActionResponse",
+  "description": "Response from a Unisys Stealth EcoAPI action",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "Status of the action",
+      "enum": ["SUCCESS", "FAILURE", "PENDING"]
+    },
+    "message": {
+      "type": "string",
+      "description": "Human-readable message describing the result"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of when the action was executed"
+    }
+  }
+}

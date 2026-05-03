@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-unisolation-request-schema.json",
+  "title": "UnisolationRequest",
+  "description": "Request to remove isolation of an endpoint or user from the Unisys Stealth network",
+  "type": "object",
+  "properties": {
+    "endpoint": {
+      "type": "string",
+      "description": "Fully Qualified Domain Name (FQDN) of the endpoint to un-isolate"
+    },
+    "user": {
+      "type": "string",
+      "description": "Username to un-isolate from the Stealth network"
+    }
+  }
+}

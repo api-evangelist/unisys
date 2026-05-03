@@ -1,0 +1,26 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://stealth-server:8448/api/roles",
+    "headers": {
+      "Authorization": "Basic BASE64_ENCODED_CREDENTIALS"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": [
+      {
+        "roleId": "ISOLATION-ROLE-001",
+        "roleName": "Security Incident Isolation",
+        "description": "Isolates endpoint or user from all Stealth communities pending investigation",
+        "type": "ISOLATION"
+      },
+      {
+        "roleId": "ISOLATION-ROLE-002",
+        "roleName": "Quarantine",
+        "description": "Places endpoint in quarantine zone with restricted remediation access only",
+        "type": "ISOLATION"
+      }
+    ]
+  }
+}

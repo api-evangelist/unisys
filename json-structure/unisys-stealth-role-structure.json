@@ -1,0 +1,10 @@
+{
+  "name": "StealthRole",
+  "description": "A Unisys Stealth network role defining segmentation and isolation policy",
+  "fields": [
+    { "name": "roleId", "type": "string", "description": "Unique identifier for the Stealth role" },
+    { "name": "roleName", "type": "string", "description": "Human-readable name of the Stealth role" },
+    { "name": "description", "type": "string", "description": "Description of the role's purpose and scope" },
+    { "name": "type", "type": "string", "description": "Role type classification (ISOLATION, STANDARD, ADMIN)" }
+  ]
+}

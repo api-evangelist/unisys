@@ -1,0 +1,22 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://stealth-server:8448/api/endpoint/isolate",
+    "headers": {
+      "Authorization": "Basic BASE64_ENCODED_CREDENTIALS",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "endpoint": "workstation-01.corp.example.com",
+      "roleId": "ISOLATION-ROLE-001"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "status": "SUCCESS",
+      "message": "Endpoint workstation-01.corp.example.com has been isolated from the Stealth network",
+      "timestamp": "2026-05-03T14:22:00Z"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "IsolationRequest",
+  "description": "Request to isolate an endpoint or user from the Unisys Stealth zero trust network",
+  "fields": [
+    { "name": "endpoint", "type": "string", "description": "Fully Qualified Domain Name (FQDN) of the endpoint to isolate" },
+    { "name": "user", "type": "string", "description": "Username to isolate from the Stealth network" },
+    { "name": "roleId", "type": "string", "description": "Optional isolation role ID to apply during isolation" }
+  ]
+}

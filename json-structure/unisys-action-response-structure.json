@@ -1,0 +1,9 @@
+{
+  "name": "ActionResponse",
+  "description": "Response from a Unisys Stealth EcoAPI action such as isolate or un-isolate",
+  "fields": [
+    { "name": "status", "type": "string", "description": "Status of the action (SUCCESS, FAILURE, PENDING)" },
+    { "name": "message", "type": "string", "description": "Human-readable message describing the result" },
+    { "name": "timestamp", "type": "datetime", "description": "Timestamp of when the action was executed" }
+  ]
+}

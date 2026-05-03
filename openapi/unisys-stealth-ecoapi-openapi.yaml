@@ -1,0 +1,470 @@
+openapi: 3.0.3
+info:
+  title: Unisys Stealth EcoAPI
+  version: '6.0'
+  description: >-
+    The Unisys Stealth EcoAPI provides programmatic access to the Unisys Stealth
+    zero trust network segmentation platform. Security teams and automation platforms
+    can use the EcoAPI to dynamically isolate and un-isolate endpoints and users from
+    the Stealth network in response to security events or policy enforcement actions.
+    The API also provides access to Stealth role configurations. Authentication uses
+    HTTP Basic credentials (username and password) against the Stealth server endpoint.
+  contact:
+    name: Unisys Stealth Support
+    url: https://stealthsecurity.unisys.com/resources/
+  x-generated-from: documentation
+  x-last-validated: '2026-05-03'
+servers:
+  - url: https://{stealthHost}:{stealthPort}
+    description: Unisys Stealth EcoAPI Server
+    variables:
+      stealthHost:
+        default: stealth-server
+        description: Hostname or IP address of the Stealth EcoAPI server
+      stealthPort:
+        default: '8448'
+        description: Port number of the Stealth EcoAPI server
+
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        HTTP Basic Authentication using Stealth server credentials (username and password).
+
+  schemas:
+    StealthRole:
+      type: object
+      description: A Stealth network role defining segmentation policy
+      properties:
+        roleId:
+          type: string
+          description: Unique identifier for the Stealth role
+        roleName:
+          type: string
+          description: Human-readable name of the Stealth role
+        description:
+          type: string
+          description: Description of the role's purpose and scope
+        type:
+          type: string
+          description: Role type classification
+          enum:
+            - ISOLATION
+            - STANDARD
+            - ADMIN
+
+    IsolationRequest:
+      type: object
+      description: Request to isolate an endpoint or user from the Stealth network
+      properties:
+        endpoint:
+          type: string
+          description: Fully Qualified Domain Name (FQDN) of the endpoint to isolate
+        user:
+          type: string
+          description: Username to isolate from the Stealth network
+        roleId:
+          type: string
+          description: Optional isolation role ID to apply during isolation
+      required: []
+
+    UnisolationRequest:
+      type: object
+      description: Request to remove isolation of an endpoint or user from the Stealth network
+      properties:
+        endpoint:
+          type: string
+          description: Fully Qualified Domain Name (FQDN) of the endpoint to un-isolate
+        user:
+          type: string
+          description: Username to un-isolate from the Stealth network
+      required: []
+
+    ActionResponse:
+      type: object
+      description: Response from a Stealth EcoAPI action
+      properties:
+        status:
+          type: string
+          description: Status of the action
+          enum:
+            - SUCCESS
+            - FAILURE
+            - PENDING
+        message:
+          type: string
+          description: Human-readable message describing the result
+        timestamp:
+          type: string
+          format: date-time
+          description: Timestamp of when the action was executed
+
+    Error:
+      type: object
+      description: Error response from the Stealth EcoAPI
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        message:
+          type: string
+          description: Error message
+        details:
+          type: string
+          description: Additional error details
+
+security:
+  - basicAuth: []
+
+tags:
+  - name: Roles
+    description: Retrieve Stealth network role configurations
+  - name: Endpoint Isolation
+    description: Isolate and un-isolate endpoints from the Stealth network
+  - name: User Isolation
+    description: Isolate and un-isolate users from the Stealth network
+  - name: Combined Isolation
+    description: Isolate and un-isolate both endpoints and users simultaneously
+
+paths:
+  /api/roles:
+    get:
+      operationId: getStealthRoles
+      summary: Get Stealth Roles
+      description: >-
+        Retrieve the list of Stealth network roles configured on the server.
+        Roles define the segmentation policies applied when endpoints or users
+        are isolated. The roleId returned can be used in isolation requests.
+      tags:
+        - Roles
+      responses:
+        '200':
+          description: List of Stealth roles
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StealthRole'
+        '401':
+          description: Unauthorized - invalid or missing credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/endpoint/isolate:
+    post:
+      operationId: isolateEndpoint
+      summary: Isolate Endpoint
+      description: >-
+        Isolate a specific endpoint (identified by FQDN) from the Stealth zero trust
+        network. The endpoint will be removed from its current Stealth communities and
+        placed under the specified isolation role policy, preventing lateral movement
+        and restricting network access until un-isolated.
+      tags:
+        - Endpoint Isolation
+      requestBody:
+        description: Endpoint isolation request
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - endpoint
+              properties:
+                endpoint:
+                  type: string
+                  description: Fully Qualified Domain Name (FQDN) of the endpoint to isolate
+                roleId:
+                  type: string
+                  description: Optional isolation role ID to apply; uses default if omitted
+      responses:
+        '200':
+          description: Endpoint successfully isolated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionResponse'
+        '400':
+          description: Bad request - missing or invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized - invalid or missing credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/endpoint/unisolate:
+    post:
+      operationId: unisolateEndpoint
+      summary: Un-Isolate Endpoint
+      description: >-
+        Remove the isolation state from a specific endpoint in the Stealth network.
+        The endpoint will be restored to its previous Stealth communities and role
+        assignments, resuming normal network segmentation policy.
+      tags:
+        - Endpoint Isolation
+      requestBody:
+        description: Endpoint un-isolation request
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - endpoint
+              properties:
+                endpoint:
+                  type: string
+                  description: Fully Qualified Domain Name (FQDN) of the endpoint to un-isolate
+      responses:
+        '200':
+          description: Endpoint successfully un-isolated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionResponse'
+        '400':
+          description: Bad request - missing or invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized - invalid or missing credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/user/isolate:
+    post:
+      operationId: isolateUser
+      summary: Isolate User
+      description: >-
+        Isolate a specific user from the Stealth zero trust network. All sessions
+        and endpoints associated with the user will be placed under the isolation
+        role policy, preventing the user from accessing network resources until
+        un-isolated.
+      tags:
+        - User Isolation
+      requestBody:
+        description: User isolation request
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - user
+              properties:
+                user:
+                  type: string
+                  description: Username to isolate from the Stealth network
+                roleId:
+                  type: string
+                  description: Optional isolation role ID to apply
+      responses:
+        '200':
+          description: User successfully isolated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionResponse'
+        '400':
+          description: Bad request - missing or invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized - invalid or missing credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/user/unisolate:
+    post:
+      operationId: unisolateUser
+      summary: Un-Isolate User
+      description: >-
+        Remove the isolation state from a specific user in the Stealth network.
+        The user will be restored to their previous Stealth community memberships
+        and role assignments, resuming normal network access under Stealth policy.
+      tags:
+        - User Isolation
+      requestBody:
+        description: User un-isolation request
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - user
+              properties:
+                user:
+                  type: string
+                  description: Username to un-isolate from the Stealth network
+      responses:
+        '200':
+          description: User successfully un-isolated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionResponse'
+        '400':
+          description: Bad request - missing or invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized - invalid or missing credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/isolate:
+    post:
+      operationId: isolateMachineAndUser
+      summary: Isolate Machine and User
+      description: >-
+        Simultaneously isolate both an endpoint and a user from the Stealth zero
+        trust network in a single API call. This is useful when responding to a
+        security incident that requires immediate isolation of both the compromised
+        machine and the associated user account.
+      tags:
+        - Combined Isolation
+      requestBody:
+        description: Combined endpoint and user isolation request
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                endpoint:
+                  type: string
+                  description: FQDN of the endpoint to isolate
+                user:
+                  type: string
+                  description: Username to isolate
+                roleId:
+                  type: string
+                  description: Optional isolation role ID to apply
+      responses:
+        '200':
+          description: Endpoint and user successfully isolated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionResponse'
+        '400':
+          description: Bad request - missing or invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized - invalid or missing credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/unisolate:
+    post:
+      operationId: unisolateMachineAndUser
+      summary: Un-Isolate Machine and User
+      description: >-
+        Simultaneously remove the isolation state from both an endpoint and a user
+        in the Stealth network in a single API call. This restores the machine and
+        user to their normal Stealth community memberships and role assignments.
+      tags:
+        - Combined Isolation
+      requestBody:
+        description: Combined endpoint and user un-isolation request
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                endpoint:
+                  type: string
+                  description: FQDN of the endpoint to un-isolate
+                user:
+                  type: string
+                  description: Username to un-isolate
+      responses:
+        '200':
+          description: Endpoint and user successfully un-isolated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionResponse'
+        '400':
+          description: Bad request - missing or invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized - invalid or missing credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-isolation-request-schema.json",
+  "title": "IsolationRequest",
+  "description": "Request to isolate an endpoint or user from the Unisys Stealth network",
+  "type": "object",
+  "properties": {
+    "endpoint": {
+      "type": "string",
+      "description": "Fully Qualified Domain Name (FQDN) of the endpoint to isolate"
+    },
+    "user": {
+      "type": "string",
+      "description": "Username to isolate from the Stealth network"
+    },
+    "roleId": {
+      "type": "string",
+      "description": "Optional isolation role ID to apply during isolation"
+    }
+  }
+}

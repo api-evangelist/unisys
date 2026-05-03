@@ -1,0 +1,54 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "unisys": "https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-ld/unisys-context.jsonld#",
+
+    "StealthRole": {
+      "@id": "unisys:StealthRole",
+      "@type": "schema:Role"
+    },
+    "IsolationRequest": {
+      "@id": "unisys:IsolationRequest",
+      "@type": "schema:Action"
+    },
+    "UnisolationRequest": {
+      "@id": "unisys:UnisolationRequest",
+      "@type": "schema:Action"
+    },
+    "ActionResponse": {
+      "@id": "unisys:ActionResponse",
+      "@type": "schema:ActionStatusType"
+    },
+
+    "roleId": {
+      "@id": "schema:identifier",
+      "@type": "xsd:string"
+    },
+    "roleName": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "endpoint": {
+      "@id": "schema:location",
+      "@type": "xsd:string"
+    },
+    "user": {
+      "@id": "schema:agent",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "schema:actionStatus",
+      "@type": "xsd:string"
+    },
+    "message": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "timestamp": {
+      "@id": "schema:startTime",
+      "@type": "xsd:dateTime"
+    }
+  }
+}
