@@ -1,237 +1,370 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "Unisys Zero Trust Security Operations"
-  description: >-
-    Zero trust security operations workflow for dynamic endpoint and user isolation,
-    security incident response, and Stealth network management. Used by security
-    operations teams, SIEM/SOAR platforms, and incident response workflows integrating
-    Unisys Stealth zero trust network segmentation.
+  label: Unisys Zero Trust Security Operations
+  description: Zero trust security operations workflow for dynamic endpoint and user isolation, security incident response,
+    and Stealth network management. Used by security operations teams, SIEM/SOAR platforms, and incident response workflows
+    integrating Unisys Stealth zero trust network segmentation.
   tags:
-    - Unisys
-    - Stealth
-    - Zero Trust
-    - Security Operations
-    - Incident Response
-    - Endpoint Isolation
-  created: "2026-05-03"
-  modified: "2026-05-03"
-
+  - Unisys
+  - Stealth
+  - Zero Trust
+  - Security Operations
+  - Incident Response
+  - Endpoint Isolation
+  created: '2026-05-03'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      STEALTH_HOST: STEALTH_HOST
-      STEALTH_PORT: STEALTH_PORT
-      STEALTH_USERNAME: STEALTH_USERNAME
-      STEALTH_PASSWORD: STEALTH_PASSWORD
-
+- namespace: env
+  keys:
+    STEALTH_HOST: STEALTH_HOST
+    STEALTH_PORT: STEALTH_PORT
+    STEALTH_USERNAME: STEALTH_USERNAME
+    STEALTH_PASSWORD: STEALTH_PASSWORD
 capability:
   consumes:
-    - import: stealth
-      location: ./shared/unisys-stealth-ecoapi.yaml
-
+  - type: http
+    namespace: stealth
+    baseUri: https://{{STEALTH_HOST}}:{{STEALTH_PORT}}
+    description: Unisys Stealth EcoAPI server.
+    authentication:
+      type: basic
+      username: '{{STEALTH_USERNAME}}'
+      password: '{{STEALTH_PASSWORD}}'
+    resources:
+    - name: roles
+      path: /api/roles
+      description: Stealth role management
+      operations:
+      - name: get-stealth-roles
+        method: GET
+        description: Retrieve Stealth network roles
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: endpoint-isolation
+      path: /api/endpoint/isolate
+      description: Endpoint isolation operations
+      operations:
+      - name: isolate-endpoint
+        method: POST
+        description: Isolate an endpoint from the Stealth network
+        inputParameters:
+        - name: endpoint
+          in: body
+          type: string
+          required: true
+          description: FQDN of the endpoint to isolate
+        - name: roleId
+          in: body
+          type: string
+          required: false
+          description: Optional isolation role ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: endpoint-unisolation
+      path: /api/endpoint/unisolate
+      description: Endpoint un-isolation operations
+      operations:
+      - name: unisolate-endpoint
+        method: POST
+        description: Remove isolation from an endpoint in the Stealth network
+        inputParameters:
+        - name: endpoint
+          in: body
+          type: string
+          required: true
+          description: FQDN of the endpoint to un-isolate
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: user-isolation
+      path: /api/user/isolate
+      description: User isolation operations
+      operations:
+      - name: isolate-user
+        method: POST
+        description: Isolate a user from the Stealth network
+        inputParameters:
+        - name: user
+          in: body
+          type: string
+          required: true
+          description: Username to isolate
+        - name: roleId
+          in: body
+          type: string
+          required: false
+          description: Optional isolation role ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: user-unisolation
+      path: /api/user/unisolate
+      description: User un-isolation operations
+      operations:
+      - name: unisolate-user
+        method: POST
+        description: Remove isolation from a user in the Stealth network
+        inputParameters:
+        - name: user
+          in: body
+          type: string
+          required: true
+          description: Username to un-isolate
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: combined-isolation
+      path: /api/isolate
+      description: Combined endpoint and user isolation
+      operations:
+      - name: isolate-machine-and-user
+        method: POST
+        description: Isolate both an endpoint and user simultaneously
+        inputParameters:
+        - name: endpoint
+          in: body
+          type: string
+          required: false
+          description: FQDN of the endpoint to isolate
+        - name: user
+          in: body
+          type: string
+          required: false
+          description: Username to isolate
+        - name: roleId
+          in: body
+          type: string
+          required: false
+          description: Optional isolation role ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: combined-unisolation
+      path: /api/unisolate
+      description: Combined endpoint and user un-isolation
+      operations:
+      - name: unisolate-machine-and-user
+        method: POST
+        description: Remove isolation from both an endpoint and user simultaneously
+        inputParameters:
+        - name: endpoint
+          in: body
+          type: string
+          required: false
+          description: FQDN of the endpoint to un-isolate
+        - name: user
+          in: body
+          type: string
+          required: false
+          description: Username to un-isolate
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8080
-      namespace: unisys-zero-trust-api
-      description: "Unified REST API for Unisys zero trust security operations."
-      resources:
-        - path: /v1/roles
-          name: roles
-          description: "Stealth network role management"
-          operations:
-            - method: GET
-              name: get-stealth-roles
-              description: "Retrieve Stealth network role configurations"
-              call: "stealth.get-stealth-roles"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/endpoints/isolate
-          name: endpoint-isolate
-          description: "Endpoint isolation operations"
-          operations:
-            - method: POST
-              name: isolate-endpoint
-              description: "Isolate an endpoint from the Stealth network"
-              call: "stealth.isolate-endpoint"
-              with:
-                endpoint: "rest.endpoint"
-                roleId: "rest.roleId"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/endpoints/unisolate
-          name: endpoint-unisolate
-          description: "Endpoint un-isolation operations"
-          operations:
-            - method: POST
-              name: unisolate-endpoint
-              description: "Remove isolation from an endpoint"
-              call: "stealth.unisolate-endpoint"
-              with:
-                endpoint: "rest.endpoint"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/users/isolate
-          name: user-isolate
-          description: "User isolation operations"
-          operations:
-            - method: POST
-              name: isolate-user
-              description: "Isolate a user from the Stealth network"
-              call: "stealth.isolate-user"
-              with:
-                user: "rest.user"
-                roleId: "rest.roleId"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/users/unisolate
-          name: user-unisolate
-          description: "User un-isolation operations"
-          operations:
-            - method: POST
-              name: unisolate-user
-              description: "Remove isolation from a user"
-              call: "stealth.unisolate-user"
-              with:
-                user: "rest.user"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/isolate
-          name: combined-isolate
-          description: "Combined endpoint and user isolation"
-          operations:
-            - method: POST
-              name: isolate-machine-and-user
-              description: "Isolate both an endpoint and user simultaneously"
-              call: "stealth.isolate-machine-and-user"
-              with:
-                endpoint: "rest.endpoint"
-                user: "rest.user"
-                roleId: "rest.roleId"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/unisolate
-          name: combined-unisolate
-          description: "Combined endpoint and user un-isolation"
-          operations:
-            - method: POST
-              name: unisolate-machine-and-user
-              description: "Remove isolation from both endpoint and user"
-              call: "stealth.unisolate-machine-and-user"
-              with:
-                endpoint: "rest.endpoint"
-                user: "rest.user"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9080
-      namespace: unisys-zero-trust-mcp
-      transport: http
-      description: "MCP server for AI-assisted zero trust security operations and incident response."
-      tools:
-        - name: get-stealth-roles
-          description: "Retrieve Stealth network role configurations for use in isolation requests"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "stealth.get-stealth-roles"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: isolate-endpoint
-          description: "Isolate a compromised or suspected endpoint from the Stealth zero trust network"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: true
-          call: "stealth.isolate-endpoint"
-          with:
-            endpoint: "tools.endpoint"
-            roleId: "tools.roleId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: unisolate-endpoint
-          description: "Restore a previously isolated endpoint to normal Stealth network access"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: true
-          call: "stealth.unisolate-endpoint"
-          with:
-            endpoint: "tools.endpoint"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: isolate-user
-          description: "Isolate a compromised or suspected user from the Stealth zero trust network"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: true
-          call: "stealth.isolate-user"
-          with:
-            user: "tools.user"
-            roleId: "tools.roleId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: unisolate-user
-          description: "Restore a previously isolated user to normal Stealth network access"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: true
-          call: "stealth.unisolate-user"
-          with:
-            user: "tools.user"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: isolate-machine-and-user
-          description: "Simultaneously isolate both an endpoint and user in response to a security incident"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: true
-          call: "stealth.isolate-machine-and-user"
-          with:
-            endpoint: "tools.endpoint"
-            user: "tools.user"
-            roleId: "tools.roleId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: unisolate-machine-and-user
-          description: "Simultaneously restore both an endpoint and user to normal Stealth network access"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: true
-          call: "stealth.unisolate-machine-and-user"
-          with:
-            endpoint: "tools.endpoint"
-            user: "tools.user"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8080
+    namespace: unisys-zero-trust-api
+    description: Unified REST API for Unisys zero trust security operations.
+    resources:
+    - path: /v1/roles
+      name: roles
+      description: Stealth network role management
+      operations:
+      - method: GET
+        name: get-stealth-roles
+        description: Retrieve Stealth network role configurations
+        call: stealth.get-stealth-roles
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/endpoints/isolate
+      name: endpoint-isolate
+      description: Endpoint isolation operations
+      operations:
+      - method: POST
+        name: isolate-endpoint
+        description: Isolate an endpoint from the Stealth network
+        call: stealth.isolate-endpoint
+        with:
+          endpoint: rest.endpoint
+          roleId: rest.roleId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/endpoints/unisolate
+      name: endpoint-unisolate
+      description: Endpoint un-isolation operations
+      operations:
+      - method: POST
+        name: unisolate-endpoint
+        description: Remove isolation from an endpoint
+        call: stealth.unisolate-endpoint
+        with:
+          endpoint: rest.endpoint
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/users/isolate
+      name: user-isolate
+      description: User isolation operations
+      operations:
+      - method: POST
+        name: isolate-user
+        description: Isolate a user from the Stealth network
+        call: stealth.isolate-user
+        with:
+          user: rest.user
+          roleId: rest.roleId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/users/unisolate
+      name: user-unisolate
+      description: User un-isolation operations
+      operations:
+      - method: POST
+        name: unisolate-user
+        description: Remove isolation from a user
+        call: stealth.unisolate-user
+        with:
+          user: rest.user
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/isolate
+      name: combined-isolate
+      description: Combined endpoint and user isolation
+      operations:
+      - method: POST
+        name: isolate-machine-and-user
+        description: Isolate both an endpoint and user simultaneously
+        call: stealth.isolate-machine-and-user
+        with:
+          endpoint: rest.endpoint
+          user: rest.user
+          roleId: rest.roleId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/unisolate
+      name: combined-unisolate
+      description: Combined endpoint and user un-isolation
+      operations:
+      - method: POST
+        name: unisolate-machine-and-user
+        description: Remove isolation from both endpoint and user
+        call: stealth.unisolate-machine-and-user
+        with:
+          endpoint: rest.endpoint
+          user: rest.user
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9080
+    namespace: unisys-zero-trust-mcp
+    transport: http
+    description: MCP server for AI-assisted zero trust security operations and incident response.
+    tools:
+    - name: get-stealth-roles
+      description: Retrieve Stealth network role configurations for use in isolation requests
+      hints:
+        readOnly: true
+        openWorld: false
+      call: stealth.get-stealth-roles
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: isolate-endpoint
+      description: Isolate a compromised or suspected endpoint from the Stealth zero trust network
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: stealth.isolate-endpoint
+      with:
+        endpoint: tools.endpoint
+        roleId: tools.roleId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: unisolate-endpoint
+      description: Restore a previously isolated endpoint to normal Stealth network access
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: stealth.unisolate-endpoint
+      with:
+        endpoint: tools.endpoint
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: isolate-user
+      description: Isolate a compromised or suspected user from the Stealth zero trust network
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: stealth.isolate-user
+      with:
+        user: tools.user
+        roleId: tools.roleId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: unisolate-user
+      description: Restore a previously isolated user to normal Stealth network access
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: stealth.unisolate-user
+      with:
+        user: tools.user
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: isolate-machine-and-user
+      description: Simultaneously isolate both an endpoint and user in response to a security incident
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: stealth.isolate-machine-and-user
+      with:
+        endpoint: tools.endpoint
+        user: tools.user
+        roleId: tools.roleId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: unisolate-machine-and-user
+      description: Simultaneously restore both an endpoint and user to normal Stealth network access
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: stealth.unisolate-machine-and-user
+      with:
+        endpoint: tools.endpoint
+        user: tools.user
+      outputParameters:
+      - type: object
+        mapping: $.
