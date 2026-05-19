@@ -1,0 +1,123 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Unisys Stealth EcoAPI — Combined Isolation
+  description: 'Unisys Stealth EcoAPI — Combined Isolation. 2 operations. Lead operation: Isolate Machine and User. Self-contained
+    Naftiko capability covering one Unisys business surface.'
+  tags:
+  - Unisys
+  - Combined Isolation
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    UNISYS_API_KEY: UNISYS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: stealth-ecoapi-combined-isolation
+    baseUri: https://{stealthHost}:{stealthPort}
+    description: Unisys Stealth EcoAPI — Combined Isolation business capability. Self-contained, no shared references.
+    resources:
+    - name: api-isolate
+      path: /api/isolate
+      operations:
+      - name: isolatemachineanduser
+        method: POST
+        description: Isolate Machine and User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-unisolate
+      path: /api/unisolate
+      operations:
+      - name: unisolatemachineanduser
+        method: POST
+        description: Un-Isolate Machine and User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.UNISYS_USER}}'
+      password: '{{env.UNISYS_PASS}}'
+  exposes:
+  - type: rest
+    namespace: stealth-ecoapi-combined-isolation-rest
+    port: 8080
+    description: REST adapter for Unisys Stealth EcoAPI — Combined Isolation. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/isolate
+      name: api-isolate
+      description: REST surface for api-isolate.
+      operations:
+      - method: POST
+        name: isolatemachineanduser
+        description: Isolate Machine and User
+        call: stealth-ecoapi-combined-isolation.isolatemachineanduser
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/unisolate
+      name: api-unisolate
+      description: REST surface for api-unisolate.
+      operations:
+      - method: POST
+        name: unisolatemachineanduser
+        description: Un-Isolate Machine and User
+        call: stealth-ecoapi-combined-isolation.unisolatemachineanduser
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: stealth-ecoapi-combined-isolation-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Unisys Stealth EcoAPI — Combined Isolation. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: isolate-machine-and-user
+      description: Isolate Machine and User
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: stealth-ecoapi-combined-isolation.isolatemachineanduser
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: un-isolate-machine-and-user
+      description: Un-Isolate Machine and User
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: stealth-ecoapi-combined-isolation.unisolatemachineanduser
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
