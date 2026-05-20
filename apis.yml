@@ -1,5 +1,10 @@
 aid: unisys
 url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/apis.yml
+common:
+  - type: GitHubOrganization
+    url: https://github.com/unisys
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/unisys
 apis:
 - aid: unisys:unisys-stealth-ecoapi
   name: Unisys Stealth EcoAPI
