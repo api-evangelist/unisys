@@ -100,6 +100,7 @@ apis:
       description: Integrate with EDR solutions to trigger Stealth isolation for confirmed threats
 name: Unisys
 tags:
+  - Fortune 1000
 - Security
 - Zero Trust
 - Network Security
