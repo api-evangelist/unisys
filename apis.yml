@@ -42,18 +42,18 @@ apis:
   - url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-structure/unisys-action-response-structure.json
     type: JSONStructure
   - url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/examples/unisys-stealth-isolate-endpoint-example.json
-    type: Example
+    type: Examples
   - url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/examples/unisys-stealth-isolate-user-example.json
-    type: Example
+    type: Examples
   - url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/examples/unisys-stealth-get-roles-example.json
-    type: Example
-  - type: NaftikoCapability
+    type: Examples
+  - type: X-NaftikoCapability
     url: capabilities/stealth-ecoapi-combined-isolation.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/stealth-ecoapi-endpoint-isolation.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/stealth-ecoapi-roles.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/stealth-ecoapi-user-isolation.yaml
   description: The Unisys Stealth EcoAPI enables security teams and automation platforms to integrate with Unisys Stealth
     zero trust network segmentation. Using the EcoAPI, teams can programmatically isolate and un-isolate endpoints and users
@@ -101,12 +101,12 @@ apis:
 name: Unisys
 tags:
   - Fortune 1000
-- Security
-- Zero Trust
-- Network Security
-- IT Services
-- Cybersecurity
-- Enterprise Technology
+  - Security
+  - Zero Trust
+  - Network Security
+  - IT Services
+  - Cybersecurity
+  - Enterprise Technology
 type: Index
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 access: 3rd-Party
