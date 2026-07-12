@@ -121,4 +121,12 @@ maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 specificationVersion: '0.19'
-common: []
+common:
+  - type: VulnerabilityDisclosure
+    url: security/unisys-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/unisys-domain-security.yml
+  - type: Authentication
+    url: authentication/unisys-authentication.yml
+  - url: https://www.unisys.com/blog/
+    type: Blog

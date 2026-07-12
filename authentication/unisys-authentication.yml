@@ -1,0 +1,13 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/unisys-stealth-ecoapi-openapi.yaml
+summary:
+  types:
+  - http
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic Authentication using Stealth server credentials (username and password).
+  sources:
+  - openapi/unisys-stealth-ecoapi-openapi.yaml
