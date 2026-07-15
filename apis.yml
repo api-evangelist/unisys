@@ -122,6 +122,8 @@ maintainers:
   email: kin@apievangelist.com
 specificationVersion: '0.19'
 common:
+  - type: AgenticAccess
+    url: agentic-access/unisys-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/unisys-vulnerability-disclosure.yml
   - type: DomainSecurity
