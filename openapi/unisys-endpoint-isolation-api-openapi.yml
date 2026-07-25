@@ -1,0 +1,157 @@
+openapi: 3.0.3
+info:
+  title: Unisys Stealth Eco Combined Isolation Endpoint Isolation API
+  version: '6.0'
+  description: The Unisys Stealth EcoAPI provides programmatic access to the Unisys Stealth zero trust network segmentation platform. Security teams and automation platforms can use the EcoAPI to dynamically isolate and un-isolate endpoints and users from the Stealth network in response to security events or policy enforcement actions. The API also provides access to Stealth role configurations. Authentication uses HTTP Basic credentials (username and password) against the Stealth server endpoint.
+  contact:
+    name: Unisys Stealth Support
+    url: https://stealthsecurity.unisys.com/resources/
+  x-generated-from: documentation
+  x-last-validated: '2026-05-03'
+servers:
+- url: https://{stealthHost}:{stealthPort}
+  description: Unisys Stealth EcoAPI Server
+  variables:
+    stealthHost:
+      default: stealth-server
+      description: Hostname or IP address of the Stealth EcoAPI server
+    stealthPort:
+      default: '8448'
+      description: Port number of the Stealth EcoAPI server
+security:
+- basicAuth: []
+tags:
+- name: Endpoint Isolation
+  description: Isolate and un-isolate endpoints from the Stealth network
+paths:
+  /api/endpoint/isolate:
+    post:
+      operationId: isolateEndpoint
+      summary: Isolate Endpoint
+      description: Isolate a specific endpoint (identified by FQDN) from the Stealth zero trust network. The endpoint will be removed from its current Stealth communities and placed under the specified isolation role policy, preventing lateral movement and restricting network access until un-isolated.
+      tags:
+      - Endpoint Isolation
+      requestBody:
+        description: Endpoint isolation request
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - endpoint
+              properties:
+                endpoint:
+                  type: string
+                  description: Fully Qualified Domain Name (FQDN) of the endpoint to isolate
+                roleId:
+                  type: string
+                  description: Optional isolation role ID to apply; uses default if omitted
+      responses:
+        '200':
+          description: Endpoint successfully isolated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionResponse'
+        '400':
+          description: Bad request - missing or invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized - invalid or missing credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/endpoint/unisolate:
+    post:
+      operationId: unisolateEndpoint
+      summary: Un-Isolate Endpoint
+      description: Remove the isolation state from a specific endpoint in the Stealth network. The endpoint will be restored to its previous Stealth communities and role assignments, resuming normal network segmentation policy.
+      tags:
+      - Endpoint Isolation
+      requestBody:
+        description: Endpoint un-isolation request
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - endpoint
+              properties:
+                endpoint:
+                  type: string
+                  description: Fully Qualified Domain Name (FQDN) of the endpoint to un-isolate
+      responses:
+        '200':
+          description: Endpoint successfully un-isolated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionResponse'
+        '400':
+          description: Bad request - missing or invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized - invalid or missing credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    ActionResponse:
+      type: object
+      description: Response from a Stealth EcoAPI action
+      properties:
+        status:
+          type: string
+          description: Status of the action
+          enum:
+          - SUCCESS
+          - FAILURE
+          - PENDING
+        message:
+          type: string
+          description: Human-readable message describing the result
+        timestamp:
+          type: string
+          format: date-time
+          description: Timestamp of when the action was executed
+    Error:
+      type: object
+      description: Error response from the Stealth EcoAPI
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        message:
+          type: string
+          description: Error message
+        details:
+          type: string
+          description: Additional error details
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using Stealth server credentials (username and password).

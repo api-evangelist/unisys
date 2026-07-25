@@ -1,0 +1,94 @@
+openapi: 3.0.3
+info:
+  title: Unisys Stealth Eco Combined Isolation Roles API
+  version: '6.0'
+  description: The Unisys Stealth EcoAPI provides programmatic access to the Unisys Stealth zero trust network segmentation platform. Security teams and automation platforms can use the EcoAPI to dynamically isolate and un-isolate endpoints and users from the Stealth network in response to security events or policy enforcement actions. The API also provides access to Stealth role configurations. Authentication uses HTTP Basic credentials (username and password) against the Stealth server endpoint.
+  contact:
+    name: Unisys Stealth Support
+    url: https://stealthsecurity.unisys.com/resources/
+  x-generated-from: documentation
+  x-last-validated: '2026-05-03'
+servers:
+- url: https://{stealthHost}:{stealthPort}
+  description: Unisys Stealth EcoAPI Server
+  variables:
+    stealthHost:
+      default: stealth-server
+      description: Hostname or IP address of the Stealth EcoAPI server
+    stealthPort:
+      default: '8448'
+      description: Port number of the Stealth EcoAPI server
+security:
+- basicAuth: []
+tags:
+- name: Roles
+  description: Retrieve Stealth network role configurations
+paths:
+  /api/roles:
+    get:
+      operationId: getStealthRoles
+      summary: Get Stealth Roles
+      description: Retrieve the list of Stealth network roles configured on the server. Roles define the segmentation policies applied when endpoints or users are isolated. The roleId returned can be used in isolation requests.
+      tags:
+      - Roles
+      responses:
+        '200':
+          description: List of Stealth roles
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StealthRole'
+        '401':
+          description: Unauthorized - invalid or missing credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    StealthRole:
+      type: object
+      description: A Stealth network role defining segmentation policy
+      properties:
+        roleId:
+          type: string
+          description: Unique identifier for the Stealth role
+        roleName:
+          type: string
+          description: Human-readable name of the Stealth role
+        description:
+          type: string
+          description: Description of the role's purpose and scope
+        type:
+          type: string
+          description: Role type classification
+          enum:
+          - ISOLATION
+          - STANDARD
+          - ADMIN
+    Error:
+      type: object
+      description: Error response from the Stealth EcoAPI
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        message:
+          type: string
+          description: Error message
+        details:
+          type: string
+          description: Additional error details
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using Stealth server credentials (username and password).
