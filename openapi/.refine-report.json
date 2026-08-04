@@ -1,0 +1,20 @@
+{
+  "provider": "unisys",
+  "sources": [
+    "unisys-combined-isolation-api-openapi.yml",
+    "unisys-endpoint-isolation-api-openapi.yml",
+    "unisys-roles-api-openapi.yml",
+    "unisys-user-isolation-api-openapi.yml"
+  ],
+  "outputs": [
+    "unisys-combined-isolation-api-openapi.yml",
+    "unisys-endpoint-isolation-api-openapi.yml",
+    "unisys-roles-api-openapi.yml",
+    "unisys-user-isolation-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
