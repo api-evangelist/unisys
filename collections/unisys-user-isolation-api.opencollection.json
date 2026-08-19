@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Unisys Stealth Eco Combined Isolation User Isolation API",
+    "version": "6.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User Isolation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Isolate User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{stealthHost}:{stealthPort}/api/user/isolate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Isolate a specific user from the Stealth zero trust network. All sessions and endpoints associated with the user will be placed under the isolation role policy, preventing the user from accessing network resources until un-isolated."
+        },
+        {
+          "info": {
+            "name": "Un-Isolate User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{stealthHost}:{stealthPort}/api/user/unisolate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove the isolation state from a specific user in the Stealth network. The user will be restored to their previous Stealth community memberships and role assignments, resuming normal network access under Stealth policy."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

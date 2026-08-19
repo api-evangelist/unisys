@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Unisys Stealth Eco Combined Isolation Endpoint Isolation API",
+    "version": "6.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Endpoint Isolation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Isolate Endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{stealthHost}:{stealthPort}/api/endpoint/isolate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Isolate a specific endpoint (identified by FQDN) from the Stealth zero trust network. The endpoint will be removed from its current Stealth communities and placed under the specified isolation role policy, preventing lateral movement and restricting network access until un-isolated."
+        },
+        {
+          "info": {
+            "name": "Un-Isolate Endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{stealthHost}:{stealthPort}/api/endpoint/unisolate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove the isolation state from a specific endpoint in the Stealth network. The endpoint will be restored to its previous Stealth communities and role assignments, resuming normal network segmentation policy."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,36 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Unisys Stealth Eco Combined Isolation Roles API",
+    "version": "6.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Roles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Stealth Roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{stealthHost}:{stealthPort}/api/roles"
+          },
+          "docs": "Retrieve the list of Stealth network roles configured on the server. Roles define the segmentation policies applied when endpoints or users are isolated. The roleId returned can be used in isolation requests."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Unisys Stealth Eco Combined Isolation API",
+    "version": "6.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Combined Isolation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Isolate Machine and User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{stealthHost}:{stealthPort}/api/isolate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Simultaneously isolate both an endpoint and a user from the Stealth zero trust network in a single API call. This is useful when responding to a security incident that requires immediate isolation of both the compromised machine and the associated user account."
+        },
+        {
+          "info": {
+            "name": "Un-Isolate Machine and User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{stealthHost}:{stealthPort}/api/unisolate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Simultaneously remove the isolation state from both an endpoint and a user in the Stealth network in a single API call. This restores the machine and user to their normal Stealth community memberships and role assignments."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,717 @@
+{
+  "item": [
+    {
+      "id": "acd3cf04-dd9d-4467-a99e-af5df7f4fb00",
+      "name": "Endpoint Isolation",
+      "description": {
+        "content": "Isolate and un-isolate endpoints from the Stealth network",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5fa6ba7f-3d15-4ae4-a284-95dcfeaaa66d",
+          "name": "Isolate Endpoint",
+          "request": {
+            "name": "Isolate Endpoint",
+            "description": {
+              "content": "Isolate a specific endpoint (identified by FQDN) from the Stealth zero trust network. The endpoint will be removed from its current Stealth communities and placed under the specified isolation role policy, preventing lateral movement and restricting network access until un-isolated.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "endpoint",
+                "isolate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Stealth EcoAPI server",
+                  "type": "any",
+                  "value": "{{stealthHost}}",
+                  "key": "stealthHost"
+                },
+                {
+                  "description": "Port number of the Stealth EcoAPI server",
+                  "type": "any",
+                  "value": "{{stealthPort}}",
+                  "key": "stealthPort"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"endpoint\": \"<string>\",\n  \"roleId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2a9f1f73-4974-4c22-b766-6291012080e8",
+              "name": "Endpoint successfully isolated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "endpoint",
+                    "isolate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Stealth EcoAPI server",
+                      "type": "any",
+                      "value": "{{stealthHost}}",
+                      "key": "stealthHost"
+                    },
+                    {
+                      "description": "Port number of the Stealth EcoAPI server",
+                      "type": "any",
+                      "value": "{{stealthPort}}",
+                      "key": "stealthPort"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endpoint\": \"<string>\",\n  \"roleId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"SUCCESS\",\n  \"message\": \"string\",\n  \"timestamp\": \"2007-10-05T22:57:25.817Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "630a05d9-9e87-43aa-b973-77fef5aefca4",
+              "name": "Bad request - missing or invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "endpoint",
+                    "isolate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Stealth EcoAPI server",
+                      "type": "any",
+                      "value": "{{stealthHost}}",
+                      "key": "stealthHost"
+                    },
+                    {
+                      "description": "Port number of the Stealth EcoAPI server",
+                      "type": "any",
+                      "value": "{{stealthPort}}",
+                      "key": "stealthPort"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endpoint\": \"<string>\",\n  \"roleId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2770,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "967e1359-e592-4513-9317-0fba705927d6",
+              "name": "Unauthorized - invalid or missing credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "endpoint",
+                    "isolate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Stealth EcoAPI server",
+                      "type": "any",
+                      "value": "{{stealthHost}}",
+                      "key": "stealthHost"
+                    },
+                    {
+                      "description": "Port number of the Stealth EcoAPI server",
+                      "type": "any",
+                      "value": "{{stealthPort}}",
+                      "key": "stealthPort"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endpoint\": \"<string>\",\n  \"roleId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2770,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b1b8121c-a65f-4558-b00e-648e2a2a5e41",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "endpoint",
+                    "isolate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Stealth EcoAPI server",
+                      "type": "any",
+                      "value": "{{stealthHost}}",
+                      "key": "stealthHost"
+                    },
+                    {
+                      "description": "Port number of the Stealth EcoAPI server",
+                      "type": "any",
+                      "value": "{{stealthPort}}",
+                      "key": "stealthPort"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endpoint\": \"<string>\",\n  \"roleId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2770,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "267ef38a-1a81-43df-8afa-6576970e3cea",
+          "name": "Un-Isolate Endpoint",
+          "request": {
+            "name": "Un-Isolate Endpoint",
+            "description": {
+              "content": "Remove the isolation state from a specific endpoint in the Stealth network. The endpoint will be restored to its previous Stealth communities and role assignments, resuming normal network segmentation policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "endpoint",
+                "unisolate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Stealth EcoAPI server",
+                  "type": "any",
+                  "value": "{{stealthHost}}",
+                  "key": "stealthHost"
+                },
+                {
+                  "description": "Port number of the Stealth EcoAPI server",
+                  "type": "any",
+                  "value": "{{stealthPort}}",
+                  "key": "stealthPort"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"endpoint\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c7fb4537-afa0-44c9-a5fc-423240f23d01",
+              "name": "Endpoint successfully un-isolated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "endpoint",
+                    "unisolate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Stealth EcoAPI server",
+                      "type": "any",
+                      "value": "{{stealthHost}}",
+                      "key": "stealthHost"
+                    },
+                    {
+                      "description": "Port number of the Stealth EcoAPI server",
+                      "type": "any",
+                      "value": "{{stealthPort}}",
+                      "key": "stealthPort"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endpoint\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"SUCCESS\",\n  \"message\": \"string\",\n  \"timestamp\": \"2007-10-05T22:57:25.817Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f91fbdd-5305-4d82-9d9e-f470b5012dc8",
+              "name": "Bad request - missing or invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "endpoint",
+                    "unisolate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Stealth EcoAPI server",
+                      "type": "any",
+                      "value": "{{stealthHost}}",
+                      "key": "stealthHost"
+                    },
+                    {
+                      "description": "Port number of the Stealth EcoAPI server",
+                      "type": "any",
+                      "value": "{{stealthPort}}",
+                      "key": "stealthPort"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endpoint\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2770,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc36f7c9-3906-41c8-bd1c-6aec51aaee0a",
+              "name": "Unauthorized - invalid or missing credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "endpoint",
+                    "unisolate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Stealth EcoAPI server",
+                      "type": "any",
+                      "value": "{{stealthHost}}",
+                      "key": "stealthHost"
+                    },
+                    {
+                      "description": "Port number of the Stealth EcoAPI server",
+                      "type": "any",
+                      "value": "{{stealthPort}}",
+                      "key": "stealthPort"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endpoint\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2770,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be1b9422-27f9-43d4-b515-84af16b30374",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "endpoint",
+                    "unisolate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Stealth EcoAPI server",
+                      "type": "any",
+                      "value": "{{stealthHost}}",
+                      "key": "stealthHost"
+                    },
+                    {
+                      "description": "Port number of the Stealth EcoAPI server",
+                      "type": "any",
+                      "value": "{{stealthPort}}",
+                      "key": "stealthPort"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endpoint\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2770,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP address of the Stealth EcoAPI server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "stealth-server",
+      "key": "stealthHost"
+    },
+    {
+      "description": {
+        "content": "Port number of the Stealth EcoAPI server",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "8448",
+      "key": "stealthPort"
+    },
+    {
+      "type": "string",
+      "value": "https://{{stealthHost}}:{{stealthPort}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b48628af-2447-4487-abc1-2663dbf7bd9e",
+    "name": "Unisys Stealth Eco Combined Isolation Endpoint Isolation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Unisys Stealth EcoAPI provides programmatic access to the Unisys Stealth zero trust network segmentation platform. Security teams and automation platforms can use the EcoAPI to dynamically isolate and un-isolate endpoints and users from the Stealth network in response to security events or policy enforcement actions. The API also provides access to Stealth role configurations. Authentication uses HTTP Basic credentials (username and password) against the Stealth server endpoint.\n\nContact Support:\n Name: Unisys Stealth Support",
+      "type": "text/plain"
+    }
+  }
+}
