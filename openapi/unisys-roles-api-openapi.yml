@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Unisys Stealth Eco Combined Isolation Roles API
   version: '6.0'
@@ -54,6 +54,19 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Error:
+      type: object
+      description: Error response from the Stealth EcoAPI
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        message:
+          type: string
+          description: Error message
+        details:
+          type: string
+          description: Additional error details
     StealthRole:
       type: object
       description: A Stealth network role defining segmentation policy
@@ -74,19 +87,6 @@ components:
           - ISOLATION
           - STANDARD
           - ADMIN
-    Error:
-      type: object
-      description: Error response from the Stealth EcoAPI
-      properties:
-        code:
-          type: integer
-          description: HTTP status code
-        message:
-          type: string
-          description: Error message
-        details:
-          type: string
-          description: Additional error details
   securitySchemes:
     basicAuth:
       type: http

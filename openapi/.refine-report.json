@@ -15,6 +15,12 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "unisys-combined-isolation-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "unisys-endpoint-isolation-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "unisys-roles-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "unisys-user-isolation-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }
