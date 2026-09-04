@@ -233,22 +233,23 @@ deliveryModel:
   method: derived
 accessModel:
   pricing: enterprise
-  onboarding: self-serve
+  onboarding: unknown
   trial: false
   try_now: false
   public: false
-  label: Enterprise · Self-serve signup
-  confidence: high
+  label: Enterprise
+  confidence: medium
   source:
   - plans
   - authentication
-  generated: '2026-07-22'
+  - security
+  generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/unisys.png
 access: 3rd-Party
 created: '2025-02-06'
 modified: '2026-05-19'
-position: Consumer
+position: Consuming
 description: Unisys is a global information technology company that provides specialized solutions integrated with leading-edge
   security. Unisys delivers digital workplace services, cloud and infrastructure services, and enterprise computing solutions
   including the ClearPath mainframe platform and the Unisys Stealth zero trust security suite. Unisys serves clients across
