@@ -1,10 +1,18 @@
 aid: unisys
 url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/apis.yml
 common:
-  - type: GitHubOrganization
-    url: https://github.com/unisys
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/unisys
+- type: Website
+  url: https://unisys.com
+- type: AgenticAccess
+  url: agentic-access/unisys-agentic-access.yml
+- type: VulnerabilityDisclosure
+  url: security/unisys-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/unisys-domain-security.yml
+- type: Authentication
+  url: authentication/unisys-authentication.yml
+- url: https://www.unisys.com/blog/
+  type: Blog
 apis:
 - aid: unisys:unisys-combined-isolation-api
   name: Unisys Combined Isolation API
@@ -19,44 +27,31 @@ apis:
   - type: Documentation
     url: https://stealthsecurity.unisys.com/resources/
   - type: SpectralRules
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/rules/unisys-stealth-spectral-rules.yml
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/rules/unisys-stealth-spectral-rules.yml
   - type: Vocabulary
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/vocabulary/unisys-vocabulary.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/vocabulary/unisys-vocabulary.yaml
   - type: JSONLDContext
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-ld/unisys-context.jsonld
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-ld/unisys-context.jsonld
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-stealth-role-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-stealth-role-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-isolation-request-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-isolation-request-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-unisolation-request-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-unisolation-request-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-action-response-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-action-response-schema.json
   - type: JSONStructure
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-structure/unisys-stealth-role-structure.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-structure/unisys-stealth-role-structure.json
   - type: JSONStructure
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-structure/unisys-isolation-request-structure.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-structure/unisys-isolation-request-structure.json
   - type: JSONStructure
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-structure/unisys-action-response-structure.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-structure/unisys-action-response-structure.json
   - type: Examples
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/examples/unisys-stealth-isolate-endpoint-example.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/examples/unisys-stealth-isolate-endpoint-example.json
   - type: Examples
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/examples/unisys-stealth-isolate-user-example.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/examples/unisys-stealth-isolate-user-example.json
   - type: Examples
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/examples/unisys-stealth-get-roles-example.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/examples/unisys-stealth-get-roles-example.json
 - aid: unisys:unisys-endpoint-isolation-api
   name: Unisys Endpoint Isolation API
   description: Isolate and un-isolate endpoints from the Stealth network
@@ -70,44 +65,31 @@ apis:
   - type: Documentation
     url: https://stealthsecurity.unisys.com/resources/
   - type: SpectralRules
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/rules/unisys-stealth-spectral-rules.yml
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/rules/unisys-stealth-spectral-rules.yml
   - type: Vocabulary
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/vocabulary/unisys-vocabulary.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/vocabulary/unisys-vocabulary.yaml
   - type: JSONLDContext
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-ld/unisys-context.jsonld
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-ld/unisys-context.jsonld
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-stealth-role-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-stealth-role-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-isolation-request-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-isolation-request-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-unisolation-request-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-unisolation-request-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-action-response-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-action-response-schema.json
   - type: JSONStructure
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-structure/unisys-stealth-role-structure.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-structure/unisys-stealth-role-structure.json
   - type: JSONStructure
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-structure/unisys-isolation-request-structure.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-structure/unisys-isolation-request-structure.json
   - type: JSONStructure
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-structure/unisys-action-response-structure.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-structure/unisys-action-response-structure.json
   - type: Examples
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/examples/unisys-stealth-isolate-endpoint-example.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/examples/unisys-stealth-isolate-endpoint-example.json
   - type: Examples
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/examples/unisys-stealth-isolate-user-example.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/examples/unisys-stealth-isolate-user-example.json
   - type: Examples
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/examples/unisys-stealth-get-roles-example.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/examples/unisys-stealth-get-roles-example.json
 - aid: unisys:unisys-roles-api
   name: Unisys Roles API
   description: Retrieve Stealth network role configurations
@@ -121,44 +103,31 @@ apis:
   - type: Documentation
     url: https://stealthsecurity.unisys.com/resources/
   - type: SpectralRules
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/rules/unisys-stealth-spectral-rules.yml
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/rules/unisys-stealth-spectral-rules.yml
   - type: Vocabulary
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/vocabulary/unisys-vocabulary.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/vocabulary/unisys-vocabulary.yaml
   - type: JSONLDContext
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-ld/unisys-context.jsonld
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-ld/unisys-context.jsonld
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-stealth-role-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-stealth-role-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-isolation-request-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-isolation-request-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-unisolation-request-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-unisolation-request-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-action-response-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-action-response-schema.json
   - type: JSONStructure
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-structure/unisys-stealth-role-structure.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-structure/unisys-stealth-role-structure.json
   - type: JSONStructure
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-structure/unisys-isolation-request-structure.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-structure/unisys-isolation-request-structure.json
   - type: JSONStructure
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-structure/unisys-action-response-structure.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-structure/unisys-action-response-structure.json
   - type: Examples
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/examples/unisys-stealth-isolate-endpoint-example.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/examples/unisys-stealth-isolate-endpoint-example.json
   - type: Examples
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/examples/unisys-stealth-isolate-user-example.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/examples/unisys-stealth-isolate-user-example.json
   - type: Examples
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/examples/unisys-stealth-get-roles-example.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/examples/unisys-stealth-get-roles-example.json
 - aid: unisys:unisys-user-isolation-api
   name: Unisys User Isolation API
   description: Isolate and un-isolate users from the Stealth network
@@ -172,53 +141,40 @@ apis:
   - type: Documentation
     url: https://stealthsecurity.unisys.com/resources/
   - type: SpectralRules
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/rules/unisys-stealth-spectral-rules.yml
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/rules/unisys-stealth-spectral-rules.yml
   - type: Vocabulary
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/vocabulary/unisys-vocabulary.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/vocabulary/unisys-vocabulary.yaml
   - type: JSONLDContext
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-ld/unisys-context.jsonld
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-ld/unisys-context.jsonld
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-stealth-role-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-stealth-role-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-isolation-request-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-isolation-request-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-unisolation-request-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-unisolation-request-schema.json
   - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-action-response-schema.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-action-response-schema.json
   - type: JSONStructure
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-structure/unisys-stealth-role-structure.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-structure/unisys-stealth-role-structure.json
   - type: JSONStructure
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-structure/unisys-isolation-request-structure.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-structure/unisys-isolation-request-structure.json
   - type: JSONStructure
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-structure/unisys-action-response-structure.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-structure/unisys-action-response-structure.json
   - type: Examples
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/examples/unisys-stealth-isolate-endpoint-example.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/examples/unisys-stealth-isolate-endpoint-example.json
   - type: Examples
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/examples/unisys-stealth-isolate-user-example.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/examples/unisys-stealth-isolate-user-example.json
   - type: Examples
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/examples/unisys-stealth-get-roles-example.json
+    url: https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/examples/unisys-stealth-get-roles-example.json
 name: Unisys
 tags:
-  - Fortune 1000
-  - Security
-  - Zero Trust
-  - Network Security
-  - IT Services
-  - Cybersecurity
-  - Enterprise Technology
+- Fortune 1000
+- Security
+- Zero Trust
+- Network Security
+- IT Services
+- Cybersecurity
+- Enterprise Technology
 type: Index
 deliveryModel:
   model: unknown
@@ -248,24 +204,14 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/unisys.png
 access: 3rd-Party
 created: '2025-02-06'
-modified: '2026-05-19'
+modified: '2026-09-16'
 position: Consuming
-description: Unisys is a global information technology company that provides specialized solutions integrated with leading-edge
-  security. Unisys delivers digital workplace services, cloud and infrastructure services, and enterprise computing solutions
-  including the ClearPath mainframe platform and the Unisys Stealth zero trust security suite. Unisys serves clients across
-  industries including financial services, government, healthcare, and transportation.
+description: Unisys is a global information technology company that provides specialized solutions integrated
+  with leading-edge security. Unisys delivers digital workplace services, cloud and infrastructure services,
+  and enterprise computing solutions including the ClearPath mainframe platform and the Unisys Stealth
+  zero trust security suite. Unisys serves clients across industries including financial services, government,
+  healthcare, and transportation.
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 specificationVersion: '0.23'
-common:
-  - type: AgenticAccess
-    url: agentic-access/unisys-agentic-access.yml
-  - type: VulnerabilityDisclosure
-    url: security/unisys-vulnerability-disclosure.yml
-  - type: DomainSecurity
-    url: security/unisys-domain-security.yml
-  - type: Authentication
-    url: authentication/unisys-authentication.yml
-  - url: https://www.unisys.com/blog/
-    type: Blog
