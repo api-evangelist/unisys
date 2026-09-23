@@ -121,6 +121,19 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Error:
+      type: object
+      description: Error response from the Stealth EcoAPI
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        message:
+          type: string
+          description: Error message
+        details:
+          type: string
+          description: Additional error details
     ActionResponse:
       type: object
       description: Response from a Stealth EcoAPI action
@@ -139,19 +152,6 @@ components:
           type: string
           format: date-time
           description: Timestamp of when the action was executed
-    Error:
-      type: object
-      description: Error response from the Stealth EcoAPI
-      properties:
-        code:
-          type: integer
-          description: HTTP status code
-        message:
-          type: string
-          description: Error message
-        details:
-          type: string
-          description: Additional error details
   securitySchemes:
     basicAuth:
       type: http

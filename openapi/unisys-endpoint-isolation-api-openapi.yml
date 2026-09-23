@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Unisys Stealth Eco Combined Isolation Endpoint Isolation API
+  title: Unisys Stealth Eco Endpoint Isolation API
   version: '6.0'
   description: The Unisys Stealth EcoAPI provides programmatic access to the Unisys Stealth zero trust network segmentation platform. Security teams and automation platforms can use the EcoAPI to dynamically isolate and un-isolate endpoints and users from the Stealth network in response to security events or policy enforcement actions. The API also provides access to Stealth role configurations. Authentication uses HTTP Basic credentials (username and password) against the Stealth server endpoint.
   contact:
@@ -119,6 +119,19 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Error:
+      type: object
+      description: Error response from the Stealth EcoAPI
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        message:
+          type: string
+          description: Error message
+        details:
+          type: string
+          description: Additional error details
     ActionResponse:
       type: object
       description: Response from a Stealth EcoAPI action
@@ -137,19 +150,6 @@ components:
           type: string
           format: date-time
           description: Timestamp of when the action was executed
-    Error:
-      type: object
-      description: Error response from the Stealth EcoAPI
-      properties:
-        code:
-          type: integer
-          description: HTTP status code
-        message:
-          type: string
-          description: Error message
-        details:
-          type: string
-          description: Additional error details
   securitySchemes:
     basicAuth:
       type: http

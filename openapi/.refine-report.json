@@ -1,10 +1,7 @@
 {
   "provider": "unisys",
   "sources": [
-    "unisys-combined-isolation-api-openapi.yml",
-    "unisys-endpoint-isolation-api-openapi.yml",
-    "unisys-roles-api-openapi.yml",
-    "unisys-user-isolation-api-openapi.yml"
+    "_ae-authored/unisys-stealth-ecoapi-openapi.yaml"
   ],
   "outputs": [
     "unisys-combined-isolation-api-openapi.yml",
@@ -16,11 +13,14 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "unisys-combined-isolation-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "unisys-endpoint-isolation-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "unisys-roles-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "unisys-user-isolation-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "unisys-stealth-ecoapi-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "unisys-combined-isolation-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "unisys-endpoint-isolation-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "unisys-roles-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "unisys-user-isolation-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

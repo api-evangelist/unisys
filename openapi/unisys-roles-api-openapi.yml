@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Unisys Stealth Eco Combined Isolation Roles API
+  title: Unisys Stealth Eco Roles API
   version: '6.0'
   description: The Unisys Stealth EcoAPI provides programmatic access to the Unisys Stealth zero trust network segmentation platform. Security teams and automation platforms can use the EcoAPI to dynamically isolate and un-isolate endpoints and users from the Stealth network in response to security events or policy enforcement actions. The API also provides access to Stealth role configurations. Authentication uses HTTP Basic credentials (username and password) against the Stealth server endpoint.
   contact:

@@ -1,7 +1,9 @@
 ---
 title: 'Unisys: Global Technology Solutions – Keep Breaking Through'
 url: https://www.unisys.com/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Unisys" press release artificial intelligence'
 position: 4
 source: serpapi-google

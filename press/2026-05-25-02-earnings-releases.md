@@ -1,7 +1,9 @@
 ---
 title: Earnings Releases
 url: https://www.unisys.com/investor-relations/earnings-releases/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Unisys" press release artificial intelligence'
 position: 2
 source: serpapi-google
