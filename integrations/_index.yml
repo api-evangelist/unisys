@@ -40,3 +40,130 @@
     detected: '2026-10-15'
   status: not-a-workflow
   arazzo: null
+- slug: unisys-aws-partner-network-services
+  label: AWS Partner Network (services)
+  partner: amazon-web-services
+  partner_name: AWS Partner Network (services)
+  category: Services partner
+  type: register
+  channel: standard-directory
+  evidence: https://partners.amazonaws.com/partners/001E000000Rp5ZMIAZ
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: AWS Partner Solutions Finder (api.finder.partners.aws.a2z.com/search)
+    spec_file: null
+    standard: AWS Partner Network (services path)
+    role: aws-services-partner
+    registered_name: Unisys
+    register_id: 001E000000Rp5ZMIAZ
+    partner_tier: Advanced
+    matched_domain: unisys.com
+    matched_by: domain
+    identity_source: the register's own website / profile URL for the firm (no lookup)
+    signal_note: listing = participation; certified_products = one entry per designation the program awards the
+      FIRM (lapsed flagged); partner_tier and context are never counted (breadth is not credit)
+    detected_by: sweep-professional-services.py
+    detected: '2026-10-19'
+    partner_paths:
+    - path_name: Services Path
+      path_tier: Advanced
+      path_stage: Differentiated
+    context:
+      service_deliveries: 2
+      professional_service_types:
+      - Assessment / Jumpstart Pkg
+      - Cloud Migration Services
+      - Custom Application Development
+      - Managed Service Provider
+      - Strategic / IT Consulting
+      - Systems Integration
+      - Training
+      - Other
+      programs:
+      - AWS Managed Service Provider
+      - Authorized Commercial Reseller
+      - AWS Solution Provider Program
+      - AWS Public Sector Solution Provider
+      - AWS Well-Architected Partner Program
+      hq_country: United States
+    certified_products:
+    - product: Government Consulting Competency
+      type: AWS Competency
+      lapsed: false
+    - product: Migration and Modernization Consulting Competency
+      type: AWS Competency
+      lapsed: false
+    - product: AWS Managed Service Provider (MSP)
+      type: AWS program validation
+      lapsed: false
+  status: not-a-workflow
+  arazzo: null
+- slug: unisys-databricks-consulting-si-partner-program
+  label: Databricks Consulting & SI Partner Program
+  partner: databricks
+  partner_name: Databricks Consulting & SI Partner Program
+  category: Services partner
+  type: register
+  channel: standard-directory
+  evidence: https://www.databricks.com/company/partners/consulting-and-si
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: Databricks partner directory (en-partners-assets/data/partner/all/en.json)
+    spec_file: null
+    standard: Databricks C&SI partner
+    role: databricks-csi-partner
+    registered_name: Unisys Corporation
+    register_id: '29490'
+    partner_tier: null
+    matched_domain: unisys.com
+    matched_by: domain
+    identity_source: the register's own website / profile URL for the firm (no lookup)
+    signal_note: listing = participation; certified_products = one entry per designation the program awards the
+      FIRM (lapsed flagged); partner_tier and context are never counted (breadth is not credit)
+    detected_by: sweep-professional-services.py
+    detected: '2026-10-19'
+    context:
+      regions:
+      - Asia-Pacific
+      - Europe
+      - Latin America
+      - Middle East and Africa
+      - North America
+  status: not-a-workflow
+  arazzo: null
+- slug: unisys-salesforce-consulting-partner-program
+  label: Salesforce Consulting Partner Program
+  partner: salesforce
+  partner_name: Salesforce Consulting Partner Program
+  category: Services partner
+  type: register
+  channel: standard-directory
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N4V00000G6gLCUAZ
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: Salesforce AppExchange consultants (recommendations/v3 listings type=consultants)
+    spec_file: null
+    standard: Salesforce consulting partner (AppExchange)
+    role: salesforce-consulting-partner
+    registered_name: Unisys Corporation
+    register_id: a0N4V00000G6gLCUAZ
+    partner_tier: Select
+    matched_domain: unisys.com
+    matched_by: domain
+    identity_source: the register's own website / profile URL for the firm (no lookup)
+    signal_note: listing = participation; certified_products = one entry per designation the program awards the
+      FIRM (lapsed flagged); partner_tier and context are never counted (breadth is not credit)
+    detected_by: sweep-professional-services.py
+    detected: '2026-10-19'
+    certified_products:
+    - product: Agentforce Service (Cloud Accredited)
+      type: Salesforce product expertise
+      lapsed: false
+    - product: Platform (Cloud Accredited)
+      type: Salesforce product expertise
+      lapsed: false
+  status: not-a-workflow
+  arazzo: null
