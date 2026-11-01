@@ -1,4 +1,4 @@
-# Unisys (unisys)
+# Unisys
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,79 +66,165 @@
 
 Unisys is a global information technology company that provides specialized solutions integrated with leading-edge security. Unisys delivers digital workplace services, cloud and infrastructure services, and enterprise computing solutions including the ClearPath mainframe platform and the Unisys Stealth zero trust security suite. Unisys serves clients across industries including financial services, government, healthcare, and transportation.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/apis.yml)
+**Areas:** Fortune 1000 · Security · Zero Trust · Network Security · IT Services · Cybersecurity · Enterprise Technology
 
-## Scope
+## Unisys on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Unisys is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/unisys/](https://apis.io/providers/unisys/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (4)
 
-- Security, Zero Trust, Network Security, IT Services, Cybersecurity, Enterprise Technology
+- [Unisys Combined Isolation API](https://apis.io/apis/unisys/unisys-combined-isolation-api/) — Isolate and un-isolate both endpoints and users simultaneously
+- [Unisys Endpoint Isolation API](https://apis.io/apis/unisys/unisys-endpoint-isolation-api/) — Isolate and un-isolate endpoints from the Stealth network
+- [Unisys Roles API](https://apis.io/apis/unisys/unisys-roles-api/) — Retrieve Stealth network role configurations
+- [Unisys User Isolation API](https://apis.io/apis/unisys/unisys-user-isolation-api/) — Isolate and un-isolate users from the Stealth network
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-02-06
-- **Modified:** 2026-05-03
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Unisys Stealth EcoAPI
-The Unisys Stealth EcoAPI enables security teams and automation platforms to integrate with Unisys Stealth zero trust network segmentation. Using the EcoAPI, teams can programmatically isolate and un-isolate endpoints and users from the Stealth network in response to security events, retrieve Stealth role configurations, and manage dynamic endpoint isolation workflows. The API uses HTTP Basic authentication against a configurable Stealth server endpoint.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-**Human URL:** [https://stealthsecurity.unisys.com](https://stealthsecurity.unisys.com)
+- [Unisys Agentic Access](https://apis.io/agentic-access/unisys/unisys-agentic-access/)
 
-**Base URL:** https://stealth-server:8448
+#### JSON Schema (4)
 
-#### Tags
+The data models the API reads and writes.
 
-- Security, Zero Trust, Network Security, Endpoint Isolation, Cybersecurity
+- [ActionResponse](https://apis.io/schemas/unisys/unisys-action-response/)
+- [IsolationRequest](https://apis.io/schemas/unisys/unisys-isolation-request/)
+- [StealthRole](https://apis.io/schemas/unisys/unisys-stealth-role/)
+- [UnisolationRequest](https://apis.io/schemas/unisys/unisys-unisolation-request/)
 
-#### Properties
+#### JSON Structure (3)
 
-- [Documentation](https://stealthsecurity.unisys.com/resources/)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/openapi/unisys-stealth-ecoapi-openapi.yaml)
-- [SpectralRules](https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/rules/unisys-stealth-spectral-rules.yml)
-- [NaftikoCapability - Shared](https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/capabilities/shared/unisys-stealth-ecoapi.yaml)
-- [NaftikoCapability - Zero Trust Security](https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/capabilities/zero-trust-security.yaml)
-- [Vocabulary](https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/vocabulary/unisys-vocabulary.yaml)
-- [JSON-LD Context](https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-ld/unisys-context.jsonld)
+Data models expressed in JSON Structure.
 
-#### JSON Schemas
+- [Unisys Action Response Structure](https://apis.io/json-structure/unisys/unisys-action-response-structure/)
+- [Unisys Isolation Request Structure](https://apis.io/json-structure/unisys/unisys-isolation-request-structure/)
+- [Unisys Stealth Role Structure](https://apis.io/json-structure/unisys/unisys-stealth-role-structure/)
 
-- [Stealth Role](https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-stealth-role-schema.json)
-- [Isolation Request](https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-isolation-request-schema.json)
-- [Unisolation Request](https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-unisolation-request-schema.json)
-- [Action Response](https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/json-schema/unisys-action-response-schema.json)
+#### JSON-LD (1)
 
-#### Examples
+Linked-data contexts for the provider's vocabulary.
 
-- [Isolate Endpoint](https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/examples/unisys-stealth-isolate-endpoint-example.json)
-- [Isolate User](https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/examples/unisys-stealth-isolate-user-example.json)
-- [Get Stealth Roles](https://raw.githubusercontent.com/api-evangelist/unisys/refs/heads/main/examples/unisys-stealth-get-roles-example.json)
+- [Unisys Context](https://apis.io/jsonld/unisys/unisys-context/)
 
-## Features
+#### Vocabulary (1)
 
-- **Dynamic Endpoint Isolation** — Programmatically isolate compromised endpoints from the Stealth zero trust network in real time
-- **Dynamic User Isolation** — Isolate specific users from network access without disrupting other endpoints or users
-- **Combined Isolation** — Simultaneously isolate both an endpoint and associated user in a single API call
-- **Role-Based Isolation Policies** — Apply specific Stealth isolation role policies during isolation for granular containment
-- **Un-Isolation and Restoration** — Restore isolated endpoints and users to normal Stealth network access after incident resolution
-- **Stealth Role Retrieval** — Retrieve available Stealth isolation role configurations for policy selection
-- **SOAR/SIEM Integration** — Integrate with security orchestration platforms for automated incident response workflows
+The provider's domain terms, defined.
 
-## Use Cases
+- [Unisys Stealth EcoAPI Vocabulary](https://apis.io/vocabularies/unisys/unisys-vocabulary/)
 
-- **Incident Response Containment** — Security operations teams isolate compromised endpoints immediately upon alert detection
-- **SOAR Automation** — SOAR platforms trigger Stealth isolation automatically based on SIEM threat detection rules
-- **Insider Threat Containment** — Isolate specific users when suspicious activity is detected while preserving investigation access
-- **Ransomware Containment** — Rapidly isolate infected endpoints to prevent lateral movement and ransomware spread
-- **Compliance-Driven Isolation** — Enforce regulatory compliance by isolating non-compliant endpoints from sensitive network segments
+#### Examples (3)
 
-## Maintainers
+Example requests and responses.
 
-**FN:** Kin Lane
+- [Unisys Stealth Get Roles Example](https://apis.io/examples/unisys/unisys-stealth-get-roles-example/)
+- [Unisys Stealth Isolate Endpoint Example](https://apis.io/examples/unisys/unisys-stealth-isolate-endpoint-example/)
+- [Unisys Stealth Isolate User Example](https://apis.io/examples/unisys/unisys-stealth-isolate-user-example/)
 
-**Email:** kin@apievangelist.com
+#### Collections (4)
+
+Postman and Open Collection request collections.
+
+- [Unisys Stealth Eco Combined Isolation API](https://apis.io/collections/unisys/open-unisys-combined-isolation-api/)
+- [Unisys Stealth Eco Combined Isolation Endpoint Isolation API](https://apis.io/collections/unisys/open-unisys-endpoint-isolation-api/)
+- [Unisys Stealth Eco Combined Isolation Roles API](https://apis.io/collections/unisys/open-unisys-roles-api/)
+- [Unisys Stealth Eco Combined Isolation User Isolation API](https://apis.io/collections/unisys/open-unisys-user-isolation-api/)
+
+#### Governance rules (3)
+
+Spectral rulesets for the provider's contracts.
+
+- [Unisys — jsonschema rules](https://apis.io/rules/unisys/unisys-jsonschema-spectral-rules/)
+- [Unisys API Rules](https://apis.io/rules/unisys/unisys-spectral-rules/)
+- [Unisys — stealth rules](https://apis.io/rules/unisys/unisys-stealth-spectral-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Unisys Authentication](https://apis.io/security/unisys/unisys-authentication/)
+- [Unisys Domain Security](https://apis.io/security/unisys/unisys-domain-security/)
+- [Unisys Vulnerability Disclosure](https://apis.io/security/unisys/unisys-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Unisys Plans Pricing](https://apis.io/plans/unisys/unisys-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Unisys Rate Limits](https://apis.io/rate-limits/unisys/unisys-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Unisys Finops](https://apis.io/finops/unisys/unisys-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://unisys.com)
+- [Blog](https://www.unisys.com/blog/)
+
+## API Evangelist rating
+
+**Kin Score 22.4** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 27.9 |
+| Contract governance | 27.3 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 14.3 |
+| Access clarity | 5.3 |
+
+**Agent readiness 24.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 22.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/unisys/](https://apis.io/providers/unisys/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Unisys: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/unisys/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
